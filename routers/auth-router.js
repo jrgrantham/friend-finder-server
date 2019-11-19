@@ -2,10 +2,10 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const Users = require('../models/users-models');
+const Users = require('../models/auth-model');
 
 router.get('/', (req, res) => {
-  Users.find()
+  Users.findAllUsers()
     .then(users => {
       res.json(users);
     })
@@ -22,7 +22,7 @@ router.post('/register', (req, res) => {
     username,
     password: hash
   };
-  Users.add(newUser)
+  Users.addUser(newUser)
     .then(user => {
       res.status(200).json(user);
     })
@@ -32,9 +32,8 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  // implement login
   const { username, password } = req.body;
-  Users.findBy({ username })
+  Users.findUserBy({ username })
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = generateToken(user);
