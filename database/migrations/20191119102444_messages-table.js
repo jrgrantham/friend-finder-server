@@ -4,14 +4,14 @@ exports.up = function(knex) {
     messages.text('message').notNullable();
     messages
       .integer('sender_id')
-      .unsigned()
       .notNullable()
+      .unsigned()
       .references('id')
       .inTable('users');
     messages
       .integer('receiver_id')
-      .unsigned()
       .notNullable()
+      .unsigned()
       .references('id')
       .inTable('users');
   });

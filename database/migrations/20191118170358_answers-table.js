@@ -2,7 +2,7 @@ exports.up = function(knex) {
   return knex.schema.createTable('answers', answers => {
     answers.increments();
     answers
-      .string('answer', 255)
+      .string('answer')
       .notNullable()
       .unique();
   });

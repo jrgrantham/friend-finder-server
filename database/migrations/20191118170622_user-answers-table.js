@@ -3,14 +3,14 @@ exports.up = function(knex) {
     usersAnswers.increments();
     usersAnswers
       .integer('user_id')
-      .unsigned()
       .notNullable()
+      .unsigned()
       .references('id')
       .inTable('users')
     usersAnswers
       .integer('question_id')
-      .unsigned()
       .notNullable()
+      .unsigned()
       .references('id')
       .inTable('questions')
     usersAnswers

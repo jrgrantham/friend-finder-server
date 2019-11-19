@@ -2,14 +2,14 @@ exports.up = function(knex) {
   return knex.schema.createTable('users', users => {
     users.increments();
     users
-      .string('username', 255)
+      .string('username')
       .notNullable()
       .unique();
-    users.string('password', 255).notNullable();
-    users.string("fname", 128);
-    users.string("lname", 128);
-    users.string("avatar_url", 128);
-    users.decimal("DOB");
+    users.string('password').notNullable();
+    users.string('fname');
+    users.string('lname');
+    users.string('avatar_url');
+    users.decimal('DOB');
   });
 };
 
