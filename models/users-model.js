@@ -1,15 +1,19 @@
 const db = require('../database/dbConfig');
 
 module.exports = {
-  findUserById,
   findReceivedMessageByUserId,
   findUserBy,
-  findUserById,
   addUser
 };
 
 function findReceivedMessageByUserId(id) {
-  return db('users').select('id', 'username');
+  return db('messages as m')
+    .join('users as u','m.sender_id', 'u.id')
+    .select(
+      'u.id AS sender_id',
+      'u.username AS sender_username',
+      'm.message')
+    .where('m.receiver_id', id)
 }
 
 function findUserBy(filter) {
