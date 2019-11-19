@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
   return knex('usersAnswers')
-    .truncate()
+    .del()
     .then(function() {
       return knex('usersAnswers').insert([
         { question_id: '1', user_id: '1', answer_id: '1' },

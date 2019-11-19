@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
   return knex('answers')
-    .truncate()
+    .del()
     .then(function() {
       return knex('answers').insert([
         { answer: 'tea' },

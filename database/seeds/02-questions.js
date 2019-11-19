@@ -1,6 +1,6 @@
 exports.seed = function(knex) {
   return knex('questions')
-    .truncate()
+    .del()
     .then(function() {
       return knex('questions').insert([
         { question: 'What\'s your favorite drink tea or coffee?' },
