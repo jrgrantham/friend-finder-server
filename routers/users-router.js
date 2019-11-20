@@ -25,6 +25,31 @@ router.get('/:id/messages/sent', (req, res) => {
     });
 });
 
+router.get('/:id/questions', (req, res) => {
+  Users.findQuestionsByUserId(req.params.id)
+    .then(questions => {
+      res.json(questions);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: 'Could not get questions: ' + err.message });
+    });
+});
+
+router.get('/:id/friends', (req, res) => {
+  const match = req.body.match || 0
+  Users.potentialFriends(req.params.id, match)
+    .then(friends => {
+      res.json(friends);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: 'Could not get friends: ' + err.message });
+    });
+});
+
 router.post('/:id/messages', (req, res) => {
   const senderId = req.params.id;
   const messageContent = req.body.message;
