@@ -60,7 +60,7 @@ FROM (
         SELECT ua.user_id,
                ua.question_id,
                ua.answer_id
-          FROM usersAnswers AS ua
+          FROM "usersAnswers" AS ua
          WHERE ua.user_id = ${id}
     )
     AS liA
@@ -69,14 +69,14 @@ FROM (
         SELECT ua.user_id,
                ua.question_id,
                ua.answer_id
-          FROM usersAnswers AS ua
+          FROM "usersAnswers" AS ua
          WHERE ua.user_id != ${id}
     )
     AS ouA ON liA.question_id = ouA.question_id AND 
               liA.answer_id = ouA.answer_id
               JOIN users as u on ouA.user_id = u.id
 GROUP BY liA.user_id,
-       ouA.user_id
+       ouA.user_id, u.username
 HAVING count( * ) > ${match}
 ORDER BY count( * ) DESC;`
   );

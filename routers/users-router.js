@@ -37,7 +37,7 @@ router.get('/:id/questions', (req, res) => {
     });
 });
 
-router.get('/:id/friends', (req, res) => {
+router.get('/:id/matches', (req, res) => {
   const match = req.body.match || 0
   Users.potentialFriends(req.params.id, match)
     .then(friends => {
