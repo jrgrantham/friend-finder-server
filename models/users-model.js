@@ -7,7 +7,8 @@ module.exports = {
   findQuestionsByUserId,
   findUserBy,
   potentialFriends,
-  sendAnswer
+  sendAnswer,
+  findQuestionAnswers
 };
 
 function findReceivedMessageByUserId(id) {
@@ -34,21 +35,49 @@ async function sendAnswer(answer) {
   return findQuestionsByUserId(answer.user_id);
 }
 
+// function findQuestionsByUserId(id) {
+//   return db
+//     .select(
+//       'q.id as question_id',
+//       'q.question as question',
+//       'a.id as answer_id',
+//       'a.answer as answer'
+//     )
+//     .from('questions as q')
+//     .leftJoin('questionAnswers as qa', 'qa.question_id', 'q.id')
+//     .leftJoin('answers as a', 'a.id', 'qa.answer_id')
+//     .leftJoin('usersAnswers as ua', function() {
+//       this.on('ua.question_id', 'q.id').on('ua.user_id', db.raw(id));
+//     })
+//     .whereNull('ua.user_id');
+// }
+
 function findQuestionsByUserId(id) {
   return db
-    .select(
-      'q.id as question_id',
-      'q.question as question',
-      'a.id as answer_id',
-      'a.answer as answer'
-    )
+    .select('q.id as question_id', 'q.question as question')
     .from('questions as q')
-    .leftJoin('questionAnswers as qa', 'qa.question_id', 'q.id')
-    .leftJoin('answers as a', 'a.id', 'qa.answer_id')
     .leftJoin('usersAnswers as ua', function() {
       this.on('ua.question_id', 'q.id').on('ua.user_id', db.raw(id));
     })
-    .whereNull('ua.user_id');
+    .whereNull('ua.user_id')
+    .first();
+}
+
+function findQuestionAnswers(id) {
+  return db('questionAnswers')
+    .where(
+      'questionAnswers.question_id',
+      db
+        .select('q.id as question_id')
+        .from('questions as q')
+        .leftJoin('usersAnswers as ua', function() {
+          this.on('ua.question_id', 'q.id').on('ua.user_id', db.raw(id));
+        })
+        .whereNull('ua.user_id')
+        .first()
+    )
+    .join('answers', 'questionAnswers.answer_id', 'answers.id')
+    .select('answers.*');
 }
 
 function potentialFriends(id, match) {

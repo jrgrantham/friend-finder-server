@@ -25,20 +25,33 @@ router.get('/:id/messages/sent', (req, res) => {
     });
 });
 
-router.get('/:id/questions', (req, res) => {
-  Users.findQuestionsByUserId(req.params.id)
-    .then(questions => {
-      res.json(questions);
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ message: 'Could not get questions: ' + err.message });
-    });
+// router.get('/:id/questions', (req, res) => {
+//   Users.findQuestionsByUserId(req.params.id)
+//     .then(questions => {
+//       res.json(questions);
+//     })
+//     .catch(err => {
+//       res
+//         .status(500)
+//         .json({ message: 'Could not get questions: ' + err.message });
+//     });
+// });
+
+router.get('/:id/question', async (req, res) => {
+  try {
+    const question = await Users.findQuestionsByUserId(req.params.id);
+    const answers = await Users.findQuestionAnswers(1);
+    const result = { ...question, answers };
+    res.json(result);
+  } catch (err) {
+    res
+      .status(500)
+      .json({ message: 'Could not get questions: ' + err.message });
+  }
 });
 
 router.get('/:id/matches', (req, res) => {
-  const match = req.body.match || 0
+  const match = req.body.match || 0;
   Users.potentialFriends(req.params.id, match)
     .then(friends => {
       res.json(friends);
