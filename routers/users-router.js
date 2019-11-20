@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Users = require('../models/users-model');
 
 router.get('/:id/messages', (req, res) => {
-  Users.findReceivedMessageByUserId(req.params.id)
+  Users.findReceivedMessageByUserId(req.decodedToken.subject)
     .then(messages => {
       res.json(messages);
     })
@@ -14,7 +14,7 @@ router.get('/:id/messages', (req, res) => {
 });
 
 router.get('/:id/messages/sent', (req, res) => {
-  Users.findSentMessageByUserId(req.params.id)
+  Users.findSentMessageByUserId(req.decodedToken.subject)
     .then(messages => {
       res.json(messages);
     })
@@ -27,8 +27,8 @@ router.get('/:id/messages/sent', (req, res) => {
 
 router.get('/:id/question', async (req, res) => {
   try {
-    const question = await Users.findQuestionsByUserId(req.params.id);
-    const answers = await Users.findQuestionAnswers(req.params.id);
+    const question = await Users.findQuestionsByUserId(req.decodedToken.subject);
+    const answers = await Users.findQuestionAnswers(req.decodedToken.subject);
     const result = { ...question, answers };
     res.json(result);
   } catch (err) {
@@ -40,9 +40,13 @@ router.get('/:id/question', async (req, res) => {
 
 router.get('/:id/matches', (req, res) => {
   const match = req.body.match || 0;
-  Users.potentialFriends(req.params.id, match)
+  Users.potentialFriends(req.decodedToken.subject, match)
     .then(friends => {
-      res.json(friends);
+      if (process.env.DB_ENV === "production") {
+        res.status(200).json(friends.rows);
+      } else {
+        res.status(200).json(friends);
+      }
     })
     .catch(err => {
       res
@@ -52,7 +56,7 @@ router.get('/:id/matches', (req, res) => {
 });
 
 router.post('/:id/question', (req, res) => {
-  const userId = req.params.id;
+  const userId = req.decodedToken.subject;
   const answerId = req.body.answerId;
   const questionId = req.body.questionId;
   const answer = {
@@ -72,7 +76,7 @@ router.post('/:id/question', (req, res) => {
 });
 
 router.post('/:id/messages', (req, res) => {
-  const senderId = req.params.id;
+  const senderId = req.decodedToken.subject;
   const messageContent = req.body.message;
   const recipientId = req.body.recipient;
   const newMessage = {
