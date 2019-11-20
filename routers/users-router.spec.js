@@ -10,15 +10,23 @@ const exampleUser = {
   password: 'examplePassword'
 };
 
+const exampleUser2 = {
+  username: 'exampleUser2',
+  password: 'examplePassword2'
+};
+
+
 beforeEach(async () => {
   await db('users').truncate();
   await request(server)
     .post(registerApi)
     .send(exampleUser);
+  await request(server)
+    .post(registerApi)
+    .send(exampleUser2);
 });
 
 describe('auth-router', () => {
-
   describe('register endpoint', () => {
     it('should have a body', async () => {
       const response = await request(server)
@@ -26,10 +34,10 @@ describe('auth-router', () => {
         .send({
           username: 'Tony',
           password: '1234'
-        })
+        });
       // console.log(response.body)
-      expect(response.body.username).toEqual('Tony')
-    })
+      expect(response.body.username).toEqual('Tony');
+    });
 
     it('should not allow duplicates', async () => {
       const response = await request(server)
@@ -37,23 +45,23 @@ describe('auth-router', () => {
         .send({
           username: 'exampleUser',
           password: 'examplePassword'
-        })
-        // console.log(response.res.text);
-        expect(response.res.text).toContain('SQLITE_CONSTRAINT')
-    })
-  })
+        });
+      // console.log(response.res.text);
+      expect(response.res.text).toContain('SQLITE_CONSTRAINT');
+    });
+  });
 
   describe('login endpoint', () => {
     it('should return a token', async () => {
       const loginResponse = await request(server)
         .post(loginApi)
         .send(exampleUser);
-      console.log(loginResponse.body)
+      console.log(loginResponse.body);
       expect(loginResponse.body).toHaveProperty('token');
       expect(loginResponse.status).toBe(200);
     });
   });
-  
+
   describe('login endpoint', () => {
     it("shouldn't return a token", async () => {
       const loginResponse = await request(server)
