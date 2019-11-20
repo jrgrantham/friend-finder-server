@@ -7,11 +7,11 @@ const jwt = require('jsonwebtoken')
 
 module.exports = (req, res, next) => {
   const token = req.headers.authorization
-  const secret = 'this is a secret'
+  const secret = process.env.SECRET
   if (token) {
     jwt.verify(token, secret, (error, decodedToken) => {
       if (error) {
-        res.status(401).json('you shall not pass! ' + error.message )
+        res.status(401).json('Invalid Credentials! ' + error.message )
       } else {
         req.decodedToken = decodedToken
         next()

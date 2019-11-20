@@ -25,22 +25,10 @@ router.get('/:id/messages/sent', (req, res) => {
     });
 });
 
-// router.get('/:id/questions', (req, res) => {
-//   Users.findQuestionsByUserId(req.params.id)
-//     .then(questions => {
-//       res.json(questions);
-//     })
-//     .catch(err => {
-//       res
-//         .status(500)
-//         .json({ message: 'Could not get questions: ' + err.message });
-//     });
-// });
-
 router.get('/:id/question', async (req, res) => {
   try {
     const question = await Users.findQuestionsByUserId(req.params.id);
-    const answers = await Users.findQuestionAnswers(1);
+    const answers = await Users.findQuestionAnswers(req.params.id);
     const result = { ...question, answers };
     res.json(result);
   } catch (err) {
@@ -63,7 +51,7 @@ router.get('/:id/matches', (req, res) => {
     });
 });
 
-router.post('/:id/questions', (req, res) => {
+router.post('/:id/question', (req, res) => {
   const userId = req.params.id;
   const answerId = req.body.answerId;
   const questionId = req.body.questionId;
