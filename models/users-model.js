@@ -6,7 +6,8 @@ module.exports = {
   sendNewMessage,
   findQuestionsByUserId,
   findUserBy,
-  potentialFriends
+  potentialFriends,
+  sendAnswer
 };
 
 function findReceivedMessageByUserId(id) {
@@ -25,32 +26,13 @@ function findSentMessageByUserId(id) {
 
 async function sendNewMessage(message) {
   await db('messages').insert(message, 'id');
-  return findReceivedMessageByUserId(message.sender_id);
+  return findSentMessageByUserId(message.sender_id);
 }
 
-// SELECT *
-//   FROM questions AS q
-//        LEFT JOIN
-//        usersAnswers AS ua ON q.id = ua.question_id AND
-//                              ua.user_id = 1
-//        LEFT JOIN
-//        questionAnswers AS qa ON q.id = qa.question_id
-//        LEFT JOIN
-//        answers AS a ON qa.answer_id = a.id
-//  WHERE ua.answer_id IS NULL;
-
-// function findQuestionsByUserId(id) {
-//   return db('questions as q')
-//     .leftJoin('usersAnswers as ua','ua.question_id', 'q.id')
-//     .leftJoin('questionAnswers as qa', 'qa.question_id', 'q.id')
-//     .leftJoin('answers as a', 'a.id', 'qa.answer_id')
-//     .select(
-// 'ua.user_id as user_id',
-// 'q.id as question_id',
-// 'q.question as question',
-// 'a.id as answer_id',
-// 'a.answer as answer')
-// }
+async function sendAnswer(answer) {
+  await db('usersAnswers').insert(answer, 'id');
+  return findQuestionsByUserId(answer.user_id);
+}
 
 function findQuestionsByUserId(id) {
   return db
@@ -71,8 +53,8 @@ function findQuestionsByUserId(id) {
 
 function potentialFriends(id, match) {
   return db.raw(
-    `SELECT liA.user_id AS user,
-    ouA.user_id AS potentialFriend,
+    `SELECT ouA.user_id AS potentialFriend,
+    u.username,
     count( * ) AS match_probability
 FROM (
         SELECT ua.user_id,
@@ -92,6 +74,7 @@ FROM (
     )
     AS ouA ON liA.question_id = ouA.question_id AND 
               liA.answer_id = ouA.answer_id
+              JOIN users as u on ouA.user_id = u.id
 GROUP BY liA.user_id,
        ouA.user_id
 HAVING count( * ) > ${match}

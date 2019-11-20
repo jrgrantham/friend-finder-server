@@ -50,6 +50,26 @@ router.get('/:id/friends', (req, res) => {
     });
 });
 
+router.post('/:id/questions', (req, res) => {
+  const userId = req.params.id;
+  const answerId = req.body.answerId;
+  const questionId = req.body.questionId;
+  const answer = {
+    user_id: userId,
+    answer_id: answerId,
+    question_id: questionId
+  };
+  Users.sendAnswer(answer)
+    .then(question => {
+      res.json(question);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: 'Could not get messages: ' + err.message });
+    });
+});
+
 router.post('/:id/messages', (req, res) => {
   const senderId = req.params.id;
   const messageContent = req.body.message;
