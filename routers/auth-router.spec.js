@@ -36,10 +36,7 @@ describe('auth-router', () => {
     it('should not allow duplicates', async () => {
       const response = await request(server)
         .post(registerApi)
-        .send({
-          username: 'exampleUser',
-          password: 'examplePassword'
-        })
+        .send(exampleUser)
         // console.log(response.res.text);
         expect(response.res.text).toContain('SQLITE_CONSTRAINT')
     })

@@ -1,7 +1,7 @@
 exports.seed = function(knex) {
-  return knex('usersAnswers')
-    .del()
-    .then(function() {
+  // return knex('usersAnswers')
+  //   .del()
+  //   .then(function() {
       return knex('usersAnswers').insert([
         { question_id: '1', user_id: '1', answer_id: '1' },
         { question_id: '1', user_id: '2', answer_id: '1' },
@@ -214,5 +214,5 @@ exports.seed = function(knex) {
         { question_id: '14', user_id: '14', answer_id: '29' },
         { question_id: '14', user_id: '15', answer_id: '29' }
       ]);
-    });
+    // });
 };

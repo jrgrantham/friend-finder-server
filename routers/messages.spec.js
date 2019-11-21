@@ -2,43 +2,31 @@ const request = require('supertest');
 const server = require('../api/server');
 const db = require('../database/dbConfig');
 
-const registerApi = '/api/auth/register';
 const loginApi = '/api/auth/login';
 const messageApi = '/api/users/messages';
 
-const exampleUser = {
-  username: 'exampleUser',
-  password: 'examplePassword'
-};
-
-const exampleUser2 = {
-  username: 'exampleUser2',
-  password: 'examplePassword2'
+const james = {
+  username: 'James',
+  password: '1234'
 };
 
 const testMessage = {
-  message: 'hello there',
+  message: 'James say hello there to Megan',
   recipient: 2
 };
 
+
 describe('messages', () => {
-  beforeEach(async () => {
-    // jest.resetModules(); // this is important - it clears the cache
-    // process.env.SECRET = 'thisisasecret';
-    await db('users').truncate();
-  });
+  
+  beforeAll(() => {
+    return db.seed.run()
+  })
 
   describe('received', () => {
     it('', async () => {
-      await request(server)
-        .post(registerApi)
-        .send(exampleUser2)
-      // await request(server)
-      //   .post(registerApi)
-        .send(exampleUser);
       const login = await request(server)
         .post(loginApi)
-        .send(exampleUser);
+        .send(james);
       const token = login.body.token;
       console.log(token);
       const response = await request(server)

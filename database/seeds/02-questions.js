@@ -1,7 +1,7 @@
 exports.seed = function(knex) {
-  return knex('questions')
-    .del()
-    .then(function() {
+  // return knex('questions')
+  //   .del()
+  //   .then(function() {
       return knex('questions').insert([
         { question: 'What\'s your favorite drink tea or coffee?' },
         { question: 'What\'s your dream car, Tesla or Lamborghini?' },
@@ -18,5 +18,5 @@ exports.seed = function(knex) {
         { question: 'Do you prefer running or swimmming?' },
         { question: 'Scuba diving or skydiving' },
       ]);
-    });
+    // });
 };

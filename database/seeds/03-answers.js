@@ -1,7 +1,7 @@
 exports.seed = function(knex) {
-  return knex('answers')
-    .del()
-    .then(function() {
+  // return knex('answers')
+  //   .del()
+  //   .then(function() {
       return knex('answers').insert([
         { answer: 'tea' },
         { answer: 'coffee' },
@@ -33,5 +33,5 @@ exports.seed = function(knex) {
         { answer: 'Scuba Diving' },
         { answer: 'Sky diving' },
       ]);
-    });
+    // });
 };

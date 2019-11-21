@@ -1,9 +1,7 @@
 exports.seed = function(knex) {
-  // Deletes ALL existing entries
-  return knex('messages')
-    .del()
-    .then(function() {
-      // Inserts seed entries
+  // return knex('messages')
+  //   .del()
+  //   .then(function() {
       return knex('messages').insert([
         {
           sender_id: '1',
@@ -251,5 +249,5 @@ exports.seed = function(knex) {
           message: 'message from user 15 to user 9'
         }
       ]);
-    });
+    // });
 };

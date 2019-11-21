@@ -58,6 +58,7 @@ function findQuestionAnswers(id) {
     .join('answers', 'questionAnswers.answer_id', 'answers.id')
     .select('answers.*');
   }
+  
   async function sendAnswer(answer) {
     await db('usersAnswers').insert(answer, 'id');
     return findQuestionsByUserId(answer.user_id);
