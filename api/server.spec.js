@@ -34,10 +34,4 @@ describe('server', () => {
       expect(response.body).toEqual('server running');
     });
   });
-
-  // describe('auth router', () => {
-  //   test('the db env is testing', () => {
-  //     expect(process.env.DB_ENV).toBe('testing');
-  //   });
-  // })
 });

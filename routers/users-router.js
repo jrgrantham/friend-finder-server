@@ -1,6 +1,18 @@
 const router = require('express').Router();
 const Users = require('../models/users-model');
 
+router.get('/:id/', (req, res) => {
+  Users.findUserById(req.decodedToken.subject)
+    .then(user => {
+      res.json(user);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ message: 'Could not get user: ' + err.message });
+    });
+});
+
 router.get('/:id/messages', (req, res) => {
   Users.findReceivedMessageByUserId(req.decodedToken.subject)
     .then(messages => {

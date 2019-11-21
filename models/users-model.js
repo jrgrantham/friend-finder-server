@@ -6,6 +6,7 @@ module.exports = {
   sendNewMessage,
   findQuestionsByUserId,
   findUserBy,
+  findUserById,
   potentialFriends,
   sendAnswer,
   findQuestionAnswers
@@ -96,5 +97,12 @@ ORDER BY count( * ) DESC;`
 function findUserBy(filter) {
   return db('users')
     .where(filter)
+    .first();
+}
+
+function findUserById(id) {
+  return db('users')
+    .select('id', 'username')
+    .where({ id })
     .first();
 }

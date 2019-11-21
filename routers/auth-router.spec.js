@@ -11,6 +11,8 @@ const exampleUser = {
 };
 
 beforeEach(async () => {
+  // jest.resetModules() // this is important - it clears the cache
+  // process.env.SECRET = 'thisisasecret'
   await db('users').truncate();
   await request(server)
     .post(registerApi)
@@ -48,7 +50,7 @@ describe('auth-router', () => {
       const loginResponse = await request(server)
         .post(loginApi)
         .send(exampleUser);
-      console.log(loginResponse.body)
+      // console.log(loginResponse.body)
       expect(loginResponse.body).toHaveProperty('token');
       expect(loginResponse.status).toBe(200);
     });
