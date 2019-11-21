@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Users = require('../models/users-model');
 
-router.get('/:id/', (req, res) => {
+router.get('/', (req, res) => {
   Users.findUserById(req.decodedToken.subject)
     .then(user => {
       res.json(user);
@@ -13,7 +13,7 @@ router.get('/:id/', (req, res) => {
     });
 });
 
-router.get('/:id/messages', (req, res) => {
+router.get('/messages', (req, res) => {
   Users.findReceivedMessageByUserId(req.decodedToken.subject)
     .then(messages => {
       res.json(messages);
@@ -25,7 +25,7 @@ router.get('/:id/messages', (req, res) => {
     });
 });
 
-router.get('/:id/messages/sent', (req, res) => {
+router.get('/messages/sent', (req, res) => {
   Users.findSentMessageByUserId(req.decodedToken.subject)
     .then(messages => {
       res.json(messages);
@@ -37,7 +37,7 @@ router.get('/:id/messages/sent', (req, res) => {
     });
 });
 
-router.get('/:id/question', async (req, res) => {
+router.get('/question', async (req, res) => {
   try {
     const question = await Users.findQuestionsByUserId(req.decodedToken.subject);
     const answers = await Users.findQuestionAnswers(req.decodedToken.subject);
@@ -50,7 +50,7 @@ router.get('/:id/question', async (req, res) => {
   }
 });
 
-router.get('/:id/matches', (req, res) => {
+router.get('/matches', (req, res) => {
   const match = req.body.match || 0;
   Users.potentialFriends(req.decodedToken.subject, match)
     .then(friends => {
@@ -67,7 +67,7 @@ router.get('/:id/matches', (req, res) => {
     });
 });
 
-router.post('/:id/question', (req, res) => {
+router.post('/question', (req, res) => {
   const userId = req.decodedToken.subject;
   const answerId = req.body.answerId;
   const questionId = req.body.questionId;
@@ -87,7 +87,7 @@ router.post('/:id/question', (req, res) => {
     });
 });
 
-router.post('/:id/messages', (req, res) => {
+router.post('/messages', (req, res) => {
   const senderId = req.decodedToken.subject;
   const messageContent = req.body.message;
   const recipientId = req.body.recipient;
