@@ -1,23 +1,24 @@
+const bcrypt = require("bcryptjs")
 exports.seed = function(knex) {
   return knex('users')
     .del()
     .then(function() {
       return knex('users').insert([
-        { username: 'James', password: '1234' },
-        { username: 'Megan', password: '1234' },
-        { username: 'Mildred', password: '1234' },
-        { username: 'Peter', password: '1234' },
-        { username: 'Martin', password: '1234' },
-        { username: 'Lisa', password: '1234' },
-        { username: 'Colin', password: '1234' },
-        { username: 'Lewis', password: '1234' },
-        { username: 'Duro', password: '1234' },
-        { username: 'Samuel', password: '1234' },
-        { username: 'Ben', password: '1234' },
-        { username: 'Ollie', password: '1234' },
-        { username: 'Ayomide', password: '1234' },
-        { username: 'Damien', password: '1234' },
-        { username: 'Conor', password: '1234' }
+        { username: 'James', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Megan', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Colin', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Luis', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Mildred', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Lisa', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Duro', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Samuel', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Justinas', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Ayomide', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Tolu', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Sarah', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Derek', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Tony', password: bcrypt.hashSync('1234', 10) },
+        { username: 'Conor', password: bcrypt.hashSync('1234', 10) }
       ]);
     });
-};
+}; 

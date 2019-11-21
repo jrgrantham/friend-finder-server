@@ -10,17 +10,17 @@ const exampleUser = {
   password: 'examplePassword'
 };
 
-beforeEach(async () => {
-  // jest.resetModules() // this is important - it clears the cache
-  // process.env.SECRET = 'thisisasecret'
-  await db('users').truncate();
-  await request(server)
-    .post(registerApi)
-    .send(exampleUser);
-});
-
 describe('auth-router', () => {
 
+  beforeEach(async () => {
+    // jest.resetModules() // this is important - it clears the cache
+    // process.env.SECRET = 'thisisasecret'
+    await db('users').truncate();
+    await request(server)
+      .post(registerApi)
+      .send(exampleUser);
+  });
+  
   describe('register endpoint', () => {
     it('should have a body', async () => {
       const response = await request(server)

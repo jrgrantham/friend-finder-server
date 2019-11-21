@@ -9,13 +9,7 @@
     "server": "nodemon index.js"
   },
   "jest": {
-    "testEnvironment": "node",
-    "runFirstly": [
-      "messages.spec.js",
-      "B.test.js",
-      "C.test.js",
-      "D.test.js"
-    ]
+    "testEnvironment": "node"
   },
   "keywords": [],
   "author": "",
