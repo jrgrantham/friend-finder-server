@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1574354377453" clover="3.2.0">
+  <project timestamp="1574354377453" name="All files">
+    <metrics statements="151" coveredstatements="99" conditionals="18" coveredconditionals="11" methods="56" coveredmethods="25" elements="225" coveredelements="135" complexity="0" loc="151" ncloc="151" packages="6" files="15" classes="15"/>
+    <package name="friend-finder-server">
+      <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="knexfile.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/knexfile.js">
+        <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="friend-finder-server.api">
+      <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="server.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/api/server.js">
+        <metrics statements="16" coveredstatements="16" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="13" count="3" type="stmt"/>
+        <line num="14" count="3" type="stmt"/>
+        <line num="15" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="4" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="friend-finder-server.database">
+      <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+      <file name="dbConfig.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/database/dbConfig.js">
+        <metrics statements="4" coveredstatements="4" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="friend-finder-server.database.seeds">
+      <metrics statements="21" coveredstatements="11" conditionals="4" coveredconditionals="3" methods="7" coveredmethods="3"/>
+      <file name="00-cleanup.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/database/seeds/00-cleanup.js">
+        <metrics statements="8" coveredstatements="2" conditionals="4" coveredconditionals="3" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+      <file name="01-create-users.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/database/seeds/01-create-users.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+      <file name="02-questions.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/database/seeds/02-questions.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+      <file name="03-answers.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/database/seeds/03-answers.js">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="04-question-answers.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/database/seeds/04-question-answers.js">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="05-user-answers.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/database/seeds/05-user-answers.js">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="06-messages.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/database/seeds/06-messages.js">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="friend-finder-server.models">
+      <metrics statements="22" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="15" coveredmethods="6"/>
+      <file name="auth-model.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/models/auth-model.js">
+        <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="5" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+        <line num="22" count="5" type="stmt"/>
+        <line num="26" count="5" type="stmt"/>
+      </file>
+      <file name="users-model.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/models/users-model.js">
+        <metrics statements="15" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="11" coveredmethods="3"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="friend-finder-server.routers">
+      <metrics statements="85" coveredstatements="54" conditionals="12" coveredconditionals="6" methods="31" coveredmethods="14"/>
+      <file name="auth-router.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/routers/auth-router.js">
+        <metrics statements="29" coveredstatements="25" conditionals="4" coveredconditionals="4" methods="10" coveredmethods="6"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="3" count="3" type="stmt"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="7" count="3" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="20" count="6" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
+        <line num="27" count="5" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="34" count="3" type="stmt"/>
+        <line num="35" count="5" type="stmt"/>
+        <line num="36" count="5" type="stmt"/>
+        <line num="38" count="5" type="cond" truecount="4" falsecount="0"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="40" count="4" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="54" count="4" type="stmt"/>
+        <line num="57" count="4" type="stmt"/>
+        <line num="60" count="4" type="stmt"/>
+        <line num="61" count="4" type="stmt"/>
+        <line num="62" count="4" type="stmt"/>
+        <line num="65" count="3" type="stmt"/>
+      </file>
+      <file name="authenticate-middleware.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/routers/authenticate-middleware.js">
+        <metrics statements="11" coveredstatements="9" conditionals="4" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="6" count="3" type="stmt"/>
+        <line num="8" count="3" type="stmt"/>
+        <line num="9" count="3" type="stmt"/>
+        <line num="10" count="3" type="stmt"/>
+        <line num="11" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="12" count="3" type="stmt"/>
+        <line num="13" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+      </file>
+      <file name="users-router.js" path="/Users/jamesgrantham/Documents/LambdaProjects/16-Backend-Build/friend-finder-server/routers/users-router.js">
+        <metrics statements="45" coveredstatements="20" conditionals="4" coveredconditionals="0" methods="19" coveredmethods="6"/>
+        <line num="1" count="3" type="stmt"/>
+        <line num="2" count="3" type="stmt"/>
+        <line num="4" count="3" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="16" count="3" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="31" count="1" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="40" count="3" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="53" count="3" type="stmt"/>
+        <line num="54" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="57" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="70" count="3" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="90" count="3" type="stmt"/>
+        <line num="91" count="1" type="stmt"/>
+        <line num="92" count="1" type="stmt"/>
+        <line num="93" count="1" type="stmt"/>
+        <line num="94" count="1" type="stmt"/>
+        <line num="99" count="1" type="stmt"/>
+        <line num="101" count="1" type="stmt"/>
+        <line num="104" count="0" type="stmt"/>
+        <line num="110" count="3" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

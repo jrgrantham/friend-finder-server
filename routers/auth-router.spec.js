@@ -12,6 +12,10 @@ const exampleUser = {
 
 describe('auth-router', () => {
 
+  afterAll(async () => {
+    await db('users').truncate();
+  })
+
   beforeEach(async () => {
     // jest.resetModules() // this is important - it clears the cache
     // process.env.SECRET = 'thisisasecret'

@@ -4,6 +4,7 @@ const db = require('../database/dbConfig');
 
 const loginApi = '/api/auth/login';
 const messageApi = '/api/users/messages';
+const sentMessagesApi = '/api/users/messages/sent'
 
 const james = {
   username: 'James',
@@ -15,61 +16,48 @@ const testMessage = {
   recipient: 2
 };
 
-
 describe('messages', () => {
-  
   beforeAll(() => {
-    return db.seed.run()
-  })
+    return db.seed.run();
+  });
 
-  describe('received', () => {
-    it('', async () => {
+  describe('Messages', () => {
+    it('should display received messages', async () => {
       const login = await request(server)
         .post(loginApi)
         .send(james);
       const token = login.body.token;
-      console.log(token);
+      const response = await request(server)
+        .get(messageApi)
+        .set({ Authorization: token });
+      // console.log(response.body);
+      expect(response.body.length).toEqual(4);
+    });
+
+    it('should display sent messages', async () => {
+      const login = await request(server)
+        .post(loginApi)
+        .send(james);
+      const token = login.body.token;
+      const response = await request(server)
+        .get(sentMessagesApi)
+        .set({ Authorization: token });
+      // console.log(response.body);
+      expect(response.body.length).toEqual(5);
+    });
+
+    it('should send a message', async () => {
+      const login = await request(server)
+        .post(loginApi)
+        .send(james);
+      const token = login.body.token;
+      // console.log(token);
       const response = await request(server)
         .post(messageApi)
         .set({ Authorization: token })
         .send(testMessage);
-      console.log(response.body);
+      // console.log(response.body.length);
+      expect(response.body.length).toEqual(6);
     });
-
-    //   it('should not allow duplicates', async () => {
-    //     const response = await request(server)
-    //       .post(registerApi)
-    //       .send({
-    //         username: 'exampleUser',
-    //         password: 'examplePassword'
-    //       });
-    //     // console.log(response.res.text);
-    //     expect(response.res.text).toContain('SQLITE_CONSTRAINT');
-    //   });
-    // });
-
-    // describe('login endpoint', () => {
-    //   it('should return a token', async () => {
-    //     const loginResponse = await request(server)
-    //       .post(loginApi)
-    //       .send(exampleUser);
-    //     // console.log(loginResponse.body);
-    //     expect(loginResponse.body).toHaveProperty('token');
-    //     expect(loginResponse.status).toBe(200);
-    //   });
-    // });
-
-    // describe('login endpoint', () => {
-    //   it("shouldn't return a token", async () => {
-    //     const loginResponse = await request(server)
-    //       .post(loginApi)
-    //       .send({
-    //         username: 'does not exist',
-    //         password: 'incorrect'
-    //       });
-    //     // console.log(loginResponse.status)
-    //     // let token = loginResponse.body.token
-    //     expect(loginResponse.status).toBe(401);
-    //   });
   });
 });
